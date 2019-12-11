@@ -6,7 +6,7 @@ import org.test.tests.TestBean;
 
 public class Main {
 
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args) {
         DependencyInjectionFactory.init();
         ((TestBean)Context.getBean("org.test.tests.TestBean")).writeMessage();
     }

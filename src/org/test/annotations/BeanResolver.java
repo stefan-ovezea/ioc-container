@@ -4,23 +4,23 @@ import org.test.base.BaseResolver;
 import org.test.di.Context;
 import org.test.exceptions.ComponentInitializationException;
 
-public class InjectableResolver implements BaseResolver {
+public class BeanResolver implements BaseResolver {
 
-    private Class<Injectable> annotatedClass = Injectable.class;
+    private Class<Bean> annotatedClass = Bean.class;
 
     public void initClass(Class<?> clazz) {
         if (clazz.isAnnotationPresent(annotatedClass)) {
             try {
-                Context.setInjectable(clazz.getName(), clazz.newInstance());
+                Context.setBean(clazz.getName(), clazz.newInstance());
             } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         } else {
-            throw new ComponentInitializationException("Cannot initialize component. Make sure it is annotated with @Injectable");
+            throw new ComponentInitializationException("Cannot initialize component. Make sure it is annotated with @Bean");
         }
     }
 
-    public Class<Injectable> getAnnotatedClass() {
+    public Class<Bean> getAnnotatedClass() {
         return annotatedClass;
     }
 }
